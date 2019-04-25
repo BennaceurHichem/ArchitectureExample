@@ -13,28 +13,30 @@ import android.arch.persistence.room.Update;
 
 import java.util.List;
 
-public interface NoteDAO {
+public interface BookDao {
 
 
     // we juyst defined the annotaion to specify to the room what should be the content
     @Insert
-    void insert(Note note);
+    void insert(List<Book> book);
 
     @Update
-    void update(Note note);
+    void update(Book book);
 // wa can pass a list of Notes ...//
     @Delete
-    void delete(Note note);
+    void delete(Book book);
 
 
 
     // Query annotation to create our query//
-     @Query("DELETE  FROM note_table")
-    void deleteAllNotes();
+     @Query("DELETE  FROM book_table")
+    void deleteAllBooks();
 
-     @Query("SELECT * FROM note_table ORDER BY priority DESC")
+     @Query("SELECT * FROM book_table ORDER BY priority DESC")
         // LiveData: we can observe this object , any modification ==> Our activity will be notified
-     LiveData<List<Note>> selectAll();
+     LiveData<List<Book>> selectAll();
+
+
 
 
 
