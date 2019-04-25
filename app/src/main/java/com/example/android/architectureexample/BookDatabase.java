@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 
 
-@Database(entities = {Book.class}, version =1)
+@Database(entities = {Book.class}, version =1,exportSchema = false)
 public abstract class BookDatabase extends RoomDatabase {
 
 

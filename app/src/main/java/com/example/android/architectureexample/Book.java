@@ -16,9 +16,33 @@ public class Book {
     @PrimaryKey(autoGenerate = true)
     private int id ;
 
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setThumbnail(int thumbnail) {
+        this.thumbnail = thumbnail;
+    }
+
+    public void setPriority(int priority) {
+        this.priority = priority;
+    }
+
     private String title;
 
     private String description;
+
+    public String getCategorie() {
+        return categorie;
+    }
+
+    public void setCategorie(String categorie) {
+        this.categorie = categorie;
+    }
 
     private String categorie;
 

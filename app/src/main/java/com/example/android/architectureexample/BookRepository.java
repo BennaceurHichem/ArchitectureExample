@@ -49,9 +49,13 @@ public class BookRepository {
 
     }
 
+    public LiveData<List<Book>> getAllBooks() {
+        return allBooks;
+    }
 
 
-        private static class InsertNoteAsyncTask extends AsyncTask<Book,Void,Void>
+
+    private static class InsertNoteAsyncTask extends AsyncTask<Book,Void,Void>
         {
             private BookDao bookDao;
 
@@ -66,7 +70,7 @@ public class BookRepository {
             @Override
             protected Void doInBackground(Book... books) {
 
-                bookDao.insert(books[0]);
+                bookDao.insert((List<Book>) books[0]);
                 return null;
             }
         }
