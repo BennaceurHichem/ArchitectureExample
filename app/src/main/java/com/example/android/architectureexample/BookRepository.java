@@ -70,7 +70,7 @@ public class BookRepository {
             @Override
             protected Void doInBackground(Book... books) {
 
-                bookDao.insert((List<Book>) books[0]);
+                bookDao.insert(books[0]);
                 return null;
             }
         }

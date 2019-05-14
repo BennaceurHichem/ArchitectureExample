@@ -19,7 +19,7 @@ public interface BookDao {
 
     // we juyst defined the annotaion to specify to the room what should be the content
     @Insert
-    void insert(List<Book> book);
+    void insert(Book book);
 
     @Update
     void update(Book book);

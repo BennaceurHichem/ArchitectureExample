@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Book_Detail">
+
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp"
+        android:layout_marginTop="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="125dp"
+                android:layout_height="170dp"
+                android:scaleType="centerCrop"
+                android:background="@color/cardview_dark_background"
+                android:id="@+id/book_image"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Book_title"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:fontFamily="cursive"
+                android:id="@+id/book_title"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="categorie"
+                android:layout_marginTop="5dp"
+                android:id="@+id/book_categorie"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="400sp"
+                android:layout_marginTop="40dp"
+                android:id="@+id/book_description"
+                android:textSize="18sp"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                />
+            
+            
+            
+        </LinearLayout>
+
+
+    </android.support.v4.widget.NestedScrollView>
+
+</LinearLayout>
