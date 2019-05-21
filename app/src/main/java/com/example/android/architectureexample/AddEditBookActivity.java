@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.NotificationCompatSideChannelService;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,17 +16,20 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.NumberPicker;
-import android.widget.TextView;
 import android.widget.Toast;
 
-public class AddBookActivity extends AppCompatActivity {
+public class AddEditBookActivity extends AppCompatActivity {
     private static final int PregCode = 2;
     private static final int REQUESCODE = 1;
+
+
 
     public static final String EXTRA_TITLE = "com.example.android.architectureexample.EXTRA_TITLE";
     public static final String EXTRA_DESCRIPTION = "com.example.android.architectureexample.EXTRA_DESCRIPTION";
     public static final String EXTRA_PRIORITY = "com.example.android.architectureexample.EXTRA_PRIORITY";
-   // public static final String EXTRA_IMAGE= "com.example.android.architectureexample.EXTRA_IMAGE";
+    public static final String EXTRA_ID= "com.example.android.architectureexample.EXTRA_ID";
+
+    // public static final String EXTRA_IMAGE= "com.example.android.architectureexample.EXTRA_IMAGE";
    // public static final String EXTRA_CATEGORY= "com.example.android.architectureexample.EXTRA_CATEGORY";
 
     private   EditText category, title, description;
@@ -62,17 +66,34 @@ public class AddBookActivity extends AppCompatActivity {
         });
 
 
+       Intent intent = getIntent();
+
+
+
+        setTitle("Add Edit Book");
+
+        // we can distinguih between edit intent and creation intent with Our
+        //EXTRA_ID, if there is this constatnt in extras we are in the edition, if it isn"t we are on the creation of new title
+        if(intent.hasExtra(EXTRA_ID)) {
+            setTitle("Edit Book");
+            title.setText(intent.getStringExtra(EXTRA_TITLE));
+            description.setText(intent.getStringExtra(EXTRA_DESCRIPTION));
+            numberPickerPriority.setValue(intent.getIntExtra(EXTRA_PRIORITY,1));
+        }else
+        {
+            setTitle("Add Book");
+        }
     }
 
     private void checkAndRequestForPermission() {
         //PAY ATTENTION PERMISSION GRANTED NT DENIED !!
-        if (ContextCompat.checkSelfPermission(AddBookActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(AddEditBookActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
 
-            if (ActivityCompat.shouldShowRequestPermissionRationale(AddBookActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE)) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(AddEditBookActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE)) {
                 Toast.makeText(this, "Please accept for required permission", Toast.LENGTH_SHORT).show();
 
             } else {
-                ActivityCompat.requestPermissions(AddBookActivity.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, PregCode);
+                ActivityCompat.requestPermissions(AddEditBookActivity.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, PregCode);
 
 
             }
@@ -111,6 +132,14 @@ public class AddBookActivity extends AppCompatActivity {
         dataIntent.putExtra(EXTRA_TITLE, titleString);
         dataIntent.putExtra(EXTRA_DESCRIPTION, descriptionString);
         dataIntent.putExtra(EXTRA_PRIORITY, priority);
+
+            int id = getIntent().getIntExtra(EXTRA_ID,-1);
+            if(id != -1)
+            {
+                // we add ID to extras only if it id != -1, i.e it is used
+                dataIntent.putExtra(EXTRA_ID,id);
+            }
+
 
         setResult(RESULT_OK, dataIntent);
         finish();

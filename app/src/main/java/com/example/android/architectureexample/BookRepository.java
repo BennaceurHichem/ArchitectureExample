@@ -41,11 +41,11 @@ public class BookRepository {
     }
     public void delete(Book book)
     {
-        new UpdateAsyncTask(bookDao).execute(book);
+        new DeleteAsyncTask(bookDao).execute(book);
     }
-    public void deleteAll(Book book)
+    public void deleteAll()
     {
-        new DeleteAllAsyncTask(bookDao).execute(book);
+        new DeleteAllAsyncTask(bookDao).execute();
 
     }
 

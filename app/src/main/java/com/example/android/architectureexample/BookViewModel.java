@@ -44,9 +44,9 @@ public class BookViewModel extends AndroidViewModel {
         repository.delete(book);
     }
 
-    public void deleteAll(Book book)
+    public void deleteAll()
     {
-        repository.deleteAll(book);
+        repository.deleteAll();
     }
     public LiveData<List<Book>> getAllBooks()
     {

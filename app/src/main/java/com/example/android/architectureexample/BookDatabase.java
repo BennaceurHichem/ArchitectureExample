@@ -47,18 +47,20 @@ public abstract class BookDatabase extends RoomDatabase {
     // in this case we can, after creating the database,
     // make an initial fill of the book_table by usingRoomDatabase.calBack()
 
-    private static RoomDatabase.Callback roomCallBack = new RoomDatabase.Callback()
-    {
 
-        // onCreate when the databse is created, we dn't need onOpen which is executed every db opening
-        @Override
-        public void onCreate(@NonNull SupportSQLiteDatabase db) {
-            super.onCreate(db);
-            // this
-            new PopulateDbAsyncTask(instance).execute();
+            // TYHE ROOM CALLBACK
+            private static RoomDatabase.Callback roomCallBack = new RoomDatabase.Callback()
+            {
 
-        }
-    };
+                // onCreate when the databse is created, we dn't need onOpen which is executed every db opening
+                @Override
+                public void onCreate(@NonNull SupportSQLiteDatabase db) {
+                    super.onCreate(db);
+                    // this
+                    new PopulateDbAsyncTask(instance).execute();
+
+                }
+            };
 
 
     private static class PopulateDbAsyncTask extends AsyncTask<Void,Void,Void>
@@ -88,10 +90,10 @@ public abstract class BookDatabase extends RoomDatabase {
             lstBook.add(new Book("ألم نشرح لك صدرك ","this is the description", 1));
             lstBook.add(new Book("وحي القلم ","this is the description", 3));
             lstBook.add(new Book("قبس من حكايا","this is the description", 2));
-            lstBook.add(new Book("عبقريات العقاد","this is the description", 4));
+          Book book1 = new Book("عبقريات العقاد","this is the description", 4);
 
 
-            bookDao.insert(lstBook.get(0));
+            bookDao.insert(book1);
             bookDao.insert(lstBook.get(1));
             bookDao.insert(lstBook.get(2));
             bookDao.insert(lstBook.get(3));
