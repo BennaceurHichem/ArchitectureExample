@@ -50,7 +50,9 @@ public class MainActivity extends AppCompatActivity {
         bookViewModel.getAllBooks().observe(this, new Observer<List<Book>>() {
             @Override
             public void onChanged(@Nullable List<Book> notes) {
-                adapter.setBooks(notes);
+
+                //we changed our setBook method with submitList which is a AdapterList Method
+                adapter.submitList(notes);
             }
         });
 
